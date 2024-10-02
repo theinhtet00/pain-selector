@@ -1,50 +1,51 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Finger and Abdomen Pain Selector Project
 
-Currently, two official plugins are available:
+This project provides an interactive pain location selector for medical applications, allowing users to choose areas of pain in the finger and abdomen regions. The system highlights the selected areas and displays relevant captions based on user interaction. Built using React, TypeScript, and Tailwind CSS, the project is designed with reusable components and a clean architecture.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+Prerequisites
+Ensure you have the following tools installed:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+Node.js (version 14.x or later)
+npm or yarn
 
-- Configure the top-level `parserOptions` property like this:
+Steps
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clone the repository
+
+```bash
+    git clone https://github.com/theinhtet00/pain-selector.git
+    cd pain-selector
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+2. Install the dependencies:
+ ```bash
+    npm install
+    or
+    yarn
 ```
+3. Start the development server:
+```bash
+    yarn dev
+```
+4. open your browser and go to http://localhost:5173 to see the app
+
+    
+## Tech Stack
+
+**React, TypeScript, TailwindCSS**
+
+
+
+
+## Authors
+
+- [@mrtheinhtetoo](https://www.github.com/theinhtet00)
+
+
+## License
+
+[MIT](https://choosealicense.com/licenses/mit/)
+
