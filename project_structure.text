@@ -1,0 +1,53 @@
+- .gitignore
+- eslint.config.js
+- index.html
+- package.json
+- postcss.config.js
+- public
+- README.md
+- src
+  - App.css
+  - App.tsx
+  - assets
+    - all-over-highlight.png
+    - default-abs.png
+    - default-finger.png
+    - dip-active.png
+    - dip-highlight.png
+    - epigastrium-active.png
+    - epigastrium-highlight.png
+    - favicon.ico
+    - index.ts
+    - llq-active.png
+    - llq-highlight.png
+    - luq-active.png
+    - luq-highlight.png
+    - mcp-active.png
+    - mcp-highlight.png
+    - others-highlight.png
+    - pip-active.png
+    - pip-highlight.png
+    - rlq-active.png
+    - rlq-highlight.png
+    - ruq-active.png
+    - ruq-highlight.png
+    - suprapubic-active.png
+    - suprapubic-highlight.png
+    - umbilicus-active.png
+    - umbilicus-highlight.png
+  - components
+    - AbdomenSelector.tsx
+    - FingerSelector.tsx
+    - Home.tsx
+  - index.css
+  - main.tsx
+  - model
+    - Position.ts
+    - routes.ts
+  - vite-env.d.ts
+- tailwind.config.js
+- tsconfig.app.json
+- tsconfig.json
+- tsconfig.node.json
+- vite.config.ts
+- yarn.lock
