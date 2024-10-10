@@ -1,14 +1,5 @@
 import React from "react";
-import {
-  dipCaption,
-  dipHighlighted,
-  fingerDefault,
-  mcpCaption,
-  mcpHighlighted,
-  otherHighlighted,
-  pipCaption,
-  pipHighlighted,
-} from "../assets";
+import Assets from "../assets";
 import { FINGER } from "../model/Position";
 import { useNavigate } from "react-router-dom";
 import { NavigationScreen } from "../model/routes";
@@ -28,22 +19,22 @@ const FingerSelector: React.FC = () => {
     switch (area) {
       case FINGER.dip:
         newSelection = {
-          highlighted: dipHighlighted,
-          caption: dipCaption,
+          highlighted: Assets.finger.dip.highlight,
+          caption: Assets.finger.dip.caption,
           position: { top: "50.5%", left: "50%" },
         };
         break;
       case FINGER.mcp:
         newSelection = {
-          highlighted: mcpHighlighted,
-          caption: mcpCaption,
+          highlighted: Assets.finger.mcp.highlight,
+          caption: Assets.finger.mcp.caption,
           position: { top: "50%", left: "50%" },
         };
         break;
       case FINGER.pip:
         newSelection = {
-          highlighted: pipHighlighted,
-          caption: pipCaption,
+          highlighted: Assets.finger.pip.highlight,
+          caption: Assets.finger.pip.caption,
           position: { top: "50%", left: "50%" },
         };
     }
@@ -54,7 +45,11 @@ const FingerSelector: React.FC = () => {
 
   return (
     <div className="relative w-full max-w-sm mx-auto">
-      <img src={fingerDefault} alt="Finger Pain Map" className="w-full" />
+      <img
+        src={Assets.finger.default}
+        alt="Finger Pain Map"
+        className="w-full"
+      />
 
       <div
         onClick={() => handleClick(FINGER.dip)}
@@ -164,7 +159,7 @@ const FingerSelector: React.FC = () => {
           onClick={() => navigate(NavigationScreen.Home)}
         >
           <img
-            src={otherHighlighted}
+            src={Assets.finger.other.highlight}
             className="absolute w-full h-full inset-0"
           />
         </div>

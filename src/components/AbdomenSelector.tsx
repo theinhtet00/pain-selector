@@ -1,24 +1,7 @@
 // src/components/AbdomenSelector.tsx
 
 import React from "react";
-import {
-  epiHighlighted,
-  epigastriumCaption,
-  llqCaption,
-  llqHigilighted,
-  luqHighlighted,
-  luqCaption,
-  rlqCaption,
-  rlqHighlighted,
-  rupCaption,
-  rupHighlighted,
-  suprapubicCaption,
-  suprapubicHighlighted,
-  umbilicusCaption,
-  umbilicusHighlighted,
-  abdomenDefault,
-  allOverHighligted,
-} from "../assets";
+import Assets from "../assets";
 import { POSITION } from "../model/Position";
 import { useNavigate } from "react-router-dom";
 import { NavigationScreen } from "../model/routes";
@@ -26,7 +9,7 @@ import useAreaSelector from "../hooks/useAreaSelector";
 
 const AbdomenSelector: React.FC = () => {
   const navigate = useNavigate();
-  const {selectedAreas, toggleArea} = useAreaSelector();
+  const { selectedAreas, toggleArea } = useAreaSelector();
 
   const handleAreaClick = (area: string) => {
     let newSelection = {
@@ -38,50 +21,50 @@ const AbdomenSelector: React.FC = () => {
     switch (area) {
       case POSITION.epi:
         newSelection = {
-          highlighted: epiHighlighted,
-          caption: epigastriumCaption,
+          highlighted: Assets.abdomen.epigastrium.highlight,
+          caption: Assets.abdomen.epigastrium.caption,
           position: { top: "49.5%", left: "51.5%" },
         };
         break;
       case POSITION.luq:
         newSelection = {
-          highlighted: luqHighlighted,
-          caption: luqCaption,
+          highlighted: Assets.abdomen.luq.highlight,
+          caption: Assets.abdomen.luq.caption,
           position: { top: "51%", left: "52%" },
         };
         break;
       case POSITION.llq:
         newSelection = {
-          highlighted: llqHigilighted,
-          caption: llqCaption,
+          highlighted: Assets.abdomen.llq.highlight,
+          caption: Assets.abdomen.llq.caption,
           position: { top: "47%", left: "53%" },
         };
         break;
       case POSITION.umb:
         newSelection = {
-          highlighted: umbilicusHighlighted,
-          caption: umbilicusCaption,
+          highlighted: Assets.abdomen.umbilicus.highlight,
+          caption: Assets.abdomen.umbilicus.caption,
           position: { top: "53%", left: "48.5%" },
         };
         break;
       case POSITION.sup:
         newSelection = {
-          highlighted: suprapubicHighlighted,
-          caption: suprapubicCaption,
+          highlighted: Assets.abdomen.suprapubic.highlight,
+          caption: Assets.abdomen.suprapubic.caption,
           position: { top: "54%", left: "51.5%" },
         };
         break;
       case POSITION.rlq:
         newSelection = {
-          highlighted: rlqHighlighted,
-          caption: rlqCaption,
+          highlighted: Assets.abdomen.rlq.highlight,
+          caption: Assets.abdomen.rlq.caption,
           position: { top: "44%", left: "44%" },
         };
         break;
       case POSITION.rup:
         newSelection = {
-          highlighted: rupHighlighted,
-          caption: rupCaption,
+          highlighted: Assets.abdomen.ruq.highlight,
+          caption: Assets.abdomen.ruq.caption,
           position: { top: "51%", left: "47%" },
         };
         break;
@@ -96,7 +79,11 @@ const AbdomenSelector: React.FC = () => {
   return (
     <div className="relative max-w-sm mx-auto">
       {/* Base Abdominal image */}
-      <img src={abdomenDefault} alt="Abdomen Pain Map" className="w-full" />
+      <img
+        src={Assets.abdomen.default}
+        alt="Abdomen Pain Map"
+        className="w-full"
+      />
 
       {/* Overlay clickable areas with precise positioning */}
       <div
@@ -170,7 +157,7 @@ const AbdomenSelector: React.FC = () => {
           className="cursor-pointer"
         >
           <img
-            src={allOverHighligted}
+            src={Assets.abdomen.allOverHighligted}
             alt="Highlighted Button"
             className="absolute w-full h-full inset-0"
           />
