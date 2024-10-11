@@ -1,5 +1,3 @@
-// src/components/AbdomenSelector.tsx
-
 import React from "react";
 import Assets from "../assets";
 import { POSITION } from "../model/Position";
@@ -7,155 +5,118 @@ import { useNavigate } from "react-router-dom";
 import { NavigationScreen } from "../model/routes";
 import useAreaSelector from "../hooks/useAreaSelector";
 
+const areaData = {
+  epi: { 
+    highlighted: Assets.abdomen.epigastrium.highlight, 
+    caption: Assets.abdomen.epigastrium.caption, 
+    position: { top: "49.5%", left: "51.5%" } 
+  },
+  luq: { 
+    highlighted: Assets.abdomen.luq.highlight, 
+    caption: Assets.abdomen.luq.caption, 
+    position: { top: "51%", left: "52%" } 
+  },
+  llq: { 
+    highlighted: Assets.abdomen.llq.highlight, 
+    caption: Assets.abdomen.llq.caption, 
+    position: { top: "47%", left: "53%" } 
+  },
+  umb: { 
+    highlighted: Assets.abdomen.umbilicus.highlight, 
+    caption: Assets.abdomen.umbilicus.caption, 
+    position: { top: "53%", left: "48.5%" } 
+  },
+  sup: { 
+    highlighted: Assets.abdomen.suprapubic.highlight, 
+    caption: Assets.abdomen.suprapubic.caption, 
+    position: { top: "54%", left: "51.5%" } 
+  },
+  rlq: { 
+    highlighted: Assets.abdomen.rlq.highlight, 
+    caption: Assets.abdomen.rlq.caption, 
+    position: { top: "44%", left: "44%" } 
+  },
+  rup: { 
+    highlighted: Assets.abdomen.ruq.highlight, 
+    caption: Assets.abdomen.ruq.caption, 
+    position: { top: "51%", left: "47%" } 
+  },
+};
+
+
+const clickableAreas = [
+  { position: POSITION.epi, top: "41%", left: "48.2%", width: "30px", height: "30px" },
+  { position: POSITION.luq, top: "47%", left: "58%", width: "30px", height: "30px" },
+  { position: POSITION.llq, top: "58%", left: "59%", width: "30px", height: "33px" },
+  { position: POSITION.umb, top: "53%", left: "48.5%", width: "30px", height: "30px" },
+  { position: POSITION.sup, top: "63.5%", left: "48.5%", width: "30px", height: "35px" },
+  { position: POSITION.rlq, top: "58%", left: "38%", width: "35px", height: "35px" },
+  { position: POSITION.rup, top: "48%", left: "38%", width: "34px", height: "35px" },
+];
+
 const AbdomenSelector: React.FC = () => {
   const navigate = useNavigate();
   const { selectedAreas, toggleArea } = useAreaSelector();
 
-  const handleAreaClick = (area: string) => {
-    let newSelection = {
-      highlighted: "",
-      caption: "",
-      position: { top: "0", left: "0" },
-    };
-
-    switch (area) {
-      case POSITION.epi:
-        newSelection = {
-          highlighted: Assets.abdomen.epigastrium.highlight,
-          caption: Assets.abdomen.epigastrium.caption,
-          position: { top: "49.5%", left: "51.5%" },
-        };
-        break;
-      case POSITION.luq:
-        newSelection = {
-          highlighted: Assets.abdomen.luq.highlight,
-          caption: Assets.abdomen.luq.caption,
-          position: { top: "51%", left: "52%" },
-        };
-        break;
-      case POSITION.llq:
-        newSelection = {
-          highlighted: Assets.abdomen.llq.highlight,
-          caption: Assets.abdomen.llq.caption,
-          position: { top: "47%", left: "53%" },
-        };
-        break;
-      case POSITION.umb:
-        newSelection = {
-          highlighted: Assets.abdomen.umbilicus.highlight,
-          caption: Assets.abdomen.umbilicus.caption,
-          position: { top: "53%", left: "48.5%" },
-        };
-        break;
-      case POSITION.sup:
-        newSelection = {
-          highlighted: Assets.abdomen.suprapubic.highlight,
-          caption: Assets.abdomen.suprapubic.caption,
-          position: { top: "54%", left: "51.5%" },
-        };
-        break;
-      case POSITION.rlq:
-        newSelection = {
-          highlighted: Assets.abdomen.rlq.highlight,
-          caption: Assets.abdomen.rlq.caption,
-          position: { top: "44%", left: "44%" },
-        };
-        break;
-      case POSITION.rup:
-        newSelection = {
-          highlighted: Assets.abdomen.ruq.highlight,
-          caption: Assets.abdomen.ruq.caption,
-          position: { top: "51%", left: "47%" },
-        };
-        break;
-      default:
-        return;
-    }
-
+  const handleAreaClick = (area: keyof typeof areaData) => {
+    const newSelection = areaData[area];
     toggleArea(newSelection);
   };
-  const allAreasSelected = selectedAreas.length === 7; // Adjust based on the total number of selectable areas
+
+  const allAreasSelected = selectedAreas.length === Object.keys(areaData).length;
 
   return (
     <div className="relative max-w-sm mx-auto">
       {/* Base Abdominal image */}
-      <img
-        src={Assets.abdomen.default}
-        alt="Abdomen Pain Map"
-        className="w-full"
-      />
+      <img src={Assets.abdomen.default} alt="Abdomen Pain Map" className="w-full" />
 
-      {/* Overlay clickable areas with precise positioning */}
-      <div
-        onClick={() => handleAreaClick(POSITION.epi)}
-        className="absolute left-[48.2%] top-[41%] w-[30px] h-[30px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // epi
-      />
-      <div
-        onClick={() => handleAreaClick(POSITION.luq)}
-        className="absolute left-[58%] top-[47%] w-[30px] h-[30px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }}
-      ></div>
-      <div
-        onClick={() => handleAreaClick(POSITION.llq)}
-        className="absolute left-[59%] top-[58%] w-[30px] h-[33px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // llq
-      />
-      <div
-        onClick={() => handleAreaClick(POSITION.umb)}
-        className="absolute left-[48.5%] top-[53%] w-[30px] h-[30px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // umb
-      />
-      <div
-        onClick={() => handleAreaClick(POSITION.sup)}
-        className="absolute left-[48.5%] top-[63.5%] w-[30px] h-[35px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // sup
-      />
-      <div
-        onClick={() => handleAreaClick(POSITION.rlq)}
-        className="absolute left-[38%] top-[58%] w-[35px] h-[35px] bg-transparent cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // sup
-      />
-      <div
-        onClick={() => handleAreaClick(POSITION.rup)}
-        className="absolute left-[38%] top-[48%] w-[34px] h-[35px] bg-right-top cursor-pointer"
-        style={{ transform: "translate(-50%, -50%)" }} // rup
-      />
+      {/* Overlay clickable areas */}
+      {clickableAreas.map(({ position, top, left, width, height }) => (
+        <div
+          key={position}
+          onClick={() => handleAreaClick(position as keyof typeof areaData)}
+          className="absolute bg-transparent cursor-pointer"
+          style={{
+            top,
+            left,
+            width,
+            height,
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+      ))}
 
       {/* Render all highlighted areas */}
       {selectedAreas.map((selection, index) => (
-        <React.Fragment key={index}>
-          <img
-            src={selection.highlighted}
-            alt={`Selected Area Highlighted ${index}`}
-            className="absolute inset-0 w-full h-full pointer-events-none"
-            style={{ zIndex: 1 }} // Ensure the highlighted image is above the base image
-          />
-        </React.Fragment>
+        <img
+          key={index}
+          src={selection.highlighted}
+          alt={`Selected Area Highlighted ${index}`}
+          className="absolute inset-0 w-full h-full pointer-events-none"
+          style={{ zIndex: 1 }}
+        />
       ))}
 
-      {/* Render captions only if not all areas are selected */}
+      {/* Render captions if not all areas are selected */}
       {!allAreasSelected &&
         selectedAreas.map((selection, index) => (
           <img
             key={index}
             src={selection.caption}
             alt={`Selected Area Caption ${index}`}
-            className="absolute inset-0 w-full h-full pointer-events-none"
+            className="absolute w-full h-full pointer-events-none"
             style={{
               zIndex: 2,
               top: selection.position.top,
               left: selection.position.left,
-              transform: "translate(-50%, -50%)", // Center the caption
+              transform: "translate(-50%, -50%)",
             }}
           />
         ))}
 
+      {/* Show all highlighted areas if all are selected */}
       {allAreasSelected && (
-        <div
-          onClick={() => navigate(NavigationScreen.Home)}
-          className="cursor-pointer"
-        >
+        <div onClick={() => navigate(NavigationScreen.Home)} className="cursor-pointer">
           <img
             src={Assets.abdomen.allOverHighligted}
             alt="Highlighted Button"
